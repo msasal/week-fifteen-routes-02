@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-cat',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cat.component.css']
 })
 export class CatComponent implements OnInit {
+  catName: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
+    this.getCatName()
   }
 
+  getCatName() {
+    this.catName = this.route.snapshot.paramMap.get('cat');
+  }
 }
